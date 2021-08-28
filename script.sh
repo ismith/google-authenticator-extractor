@@ -10,7 +10,7 @@ for f in $(cat codes); do
   | sed -e 's@+@ @g;s@%@\\x@g' | xargs -0 printf "%b" \
   | base64 -d \
   | protoc --decode MigrationPayload migration-payload.proto \
-  | grep -e otp_parameters -e '}' -e secret: -e name: \
+  | grep -e otp_parameters -e '}' -e secret: -e name: -e issuer \
   | sed 's/otp_parameters //' \
   | sed 's/  \([a-z]*\): \(.*\)/  "\1": \2,/' \
   | sed '/name":/ s/,$//' \
