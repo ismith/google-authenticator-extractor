@@ -33,7 +33,7 @@ done \
       | sed -e 's/  "secret": "\(.*\)",/\1/')")
     totp=$(oathtool --totp --base32 "$secret")
     echo "  \"totp\": \"${totp}\","
-    # echo "$line"
+    echo "$line" # secret, base32-encoded
   else
     echo "$line"
   fi
